@@ -14,7 +14,7 @@ JitsiUrlGenerator.prototype.trigger = function () {
 
   let params = [];
   for (let group of Object.values(this.paramGroups)) {
-    params = params.concat(encodeParamGroup(group));
+    params = params.concat(flattenParamGroup(group));
   }
 
   let url = "https://" + this.domain + "/" + this.roomName;
@@ -51,11 +51,11 @@ function makeUrlGenerator(callback, domain, roomName, paramGroup) {
 }
 
 
-function encodeParamGroup(group) {
+function flattenParamGroup(group) {
   let params = [];
   for (let p in group) {
     if (group.hasOwnProperty(p)) {
-      params.push(encodeURIComponent(p) + '=' + encodeURIComponent(group[p]));
+      params.push(p + '=' + group[p]);
     }
   }
   return params;

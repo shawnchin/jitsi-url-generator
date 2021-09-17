@@ -54,14 +54,14 @@
         let email = $userInfoEmail.val().trim();
 
         if (displayName) {
-          paramGroup['userInfo.displayName'] = '"' + displayName + '"';
+          paramGroup['userInfo.displayName'] = '"' + encodeURIComponent(displayName) + '"';
         }
 
         if (email) {
-          paramGroup['userInfo.email'] = '"' + email + '"';
+          paramGroup['userInfo.email'] = '"' + encodeURIComponent(email) + '"';
         }
 
-        $codeUserInfo.text(encodeParamGroup(paramGroup).join('&'));
+        $codeUserInfo.text(flattenParamGroup(paramGroup).join('&'));
         generator.updateParamGroup('userInfo', paramGroup);
       }
 
@@ -94,7 +94,7 @@
           paramGroup['config.notifications'] = '[]';
         }
 
-        $codeFeatures.text(encodeParamGroup(paramGroup).join('&'));
+        $codeFeatures.text(flattenParamGroup(paramGroup).join('&'));
         generator.updateParamGroup('features', paramGroup);
       }
 
@@ -153,7 +153,7 @@
 
           paramGroup['config.toolbarButtons'] = (selected.length === 0) ? '[]' : '["' + selected.join('","') + '"]';
         }
-        $codeToolbar.text(encodeParamGroup(paramGroup).join('&'));
+        $codeToolbar.text(flattenParamGroup(paramGroup).join('&'));
         generator.updateParamGroup('toolbar', paramGroup);
       }
 
