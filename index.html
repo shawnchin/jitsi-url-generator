@@ -35,7 +35,9 @@
       $('#roomName')
         .val(DEFAULT_ROOM_NAME)
         .on("input", function () {
-          generator.updateRoomName(this.value);
+          let value = this.value.replace(/\W/g, '');  // sanitize
+          this.value = value;
+          generator.updateRoomName(value);
         });
 
       // Regenerate random room name
