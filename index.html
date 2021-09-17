@@ -35,7 +35,7 @@
       $('#roomName')
         .val(DEFAULT_ROOM_NAME)
         .on("input", function () {
-          let value = this.value.replace(/\W/g, '');  // sanitize
+          let value = this.value.replace(/[^0-9a-z_.\-]/gi, '');  // sanitize
           this.value = value;
           generator.updateRoomName(value);
         });
