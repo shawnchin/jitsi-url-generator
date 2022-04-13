@@ -81,6 +81,7 @@
       const $disablePrejoinPage = $("#disablePrejoinPage");
       const $startAudioMuted = $("#startAudioMuted");
       const $startVideoMuted = $("#startVideoMuted");
+      const $disableInitialGUM = $("#disableInitialGUM");
       const $disableNotifications = $("#disableNotifications");
       const $codeFeatures = $("#codeFeatures");
 
@@ -88,7 +89,7 @@
         let paramGroup = {};
 
         if ($disablePrejoinPage.prop('checked')) {
-          paramGroup['config.prejoinPageEnabled'] = false;
+          paramGroup['config.prejoinConfig.enabled'] = false;
         }
 
         if ($startAudioMuted.prop('checked')) {
@@ -97,6 +98,10 @@
 
         if ($startVideoMuted.prop('checked')) {
           paramGroup['config.startWithVideoMuted'] = true;
+        }
+
+        if ($disableInitialGUM.prop('checked')) {
+          paramGroup['config.disableInitialGUM'] = true;
         }
 
         if ($disableNotifications.prop('checked')) {
@@ -110,6 +115,7 @@
       $disablePrejoinPage.on("input", featureChanged);
       $startAudioMuted.on("input", featureChanged);
       $startVideoMuted.on("input", featureChanged);
+      $disableInitialGUM.on("input", featureChanged);
       $disableNotifications.on("input", featureChanged);
 
       // Handle interface change
@@ -319,11 +325,23 @@
             </label>
           </div>
 
-          <div class="form-check">
+          <div class="form-check mb-4">
             <input class="form-check-input" type="checkbox" value="" id="startVideoMuted">
             <label class="form-check-label" for="startVideoMuted">
               Start with Camera off
             </label>
+          </div>
+
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="" id="disableInitialGUM">
+            <label class="form-check-label" for="disableInitialGUM">
+              Don't ask for media permissions
+            </label>
+            <br/>
+            <small class="text-muted">
+              Skips the initial permissions check to get user media. Audio/video will be disabled, but can be enabled later.
+              Useful when joining just for screenshare, or as a passive attendee.
+            </small>
           </div>
 
           <div class="form-check mt-4">
