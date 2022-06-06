@@ -81,6 +81,7 @@
       const $disablePrejoinPage = $("#disablePrejoinPage");
       const $startAudioMuted = $("#startAudioMuted");
       const $startVideoMuted = $("#startVideoMuted");
+      const $disableFaceCentering = $("#disableFaceCentering");
       const $disableInitialGUM = $("#disableInitialGUM");
       const $disableNotifications = $("#disableNotifications");
       const $codeFeatures = $("#codeFeatures");
@@ -100,6 +101,10 @@
           paramGroup['config.startWithVideoMuted'] = true;
         }
 
+        if ($disableFaceCentering.prop('checked')) {
+          paramGroup['config.faceLandmarks.enableFaceCentering'] = false;
+        }
+
         if ($disableInitialGUM.prop('checked')) {
           paramGroup['config.disableInitialGUM'] = true;
         }
@@ -115,6 +120,7 @@
       $disablePrejoinPage.on("input", featureChanged);
       $startAudioMuted.on("input", featureChanged);
       $startVideoMuted.on("input", featureChanged);
+      $disableFaceCentering.on("input", featureChanged);
       $disableInitialGUM.on("input", featureChanged);
       $disableNotifications.on("input", featureChanged);
 
@@ -318,7 +324,7 @@
             </small>
           </div>
 
-          <div class="form-check">
+          <div class="form-check mb-4">
             <input class="form-check-input" type="checkbox" value="" id="startAudioMuted">
             <label class="form-check-label" for="startAudioMuted">
               Start with Audio Muted
@@ -329,6 +335,13 @@
             <input class="form-check-input" type="checkbox" value="" id="startVideoMuted">
             <label class="form-check-label" for="startVideoMuted">
               Start with Camera off
+            </label>
+          </div>
+
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="" id="disableFaceCentering">
+            <label class="form-check-label" for="disableFaceCentering">
+              Disable Face Centering
             </label>
           </div>
 
