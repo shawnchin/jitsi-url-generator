@@ -79,7 +79,7 @@
 
       // Handle feature changes
       const $disablePrejoinPage = $("#disablePrejoinPage");
-      const $audioOnly = $("#audioOnly");
+      const $startAudioOnly = $("#startAudioOnly");
       const $startAudioMuted = $("#startAudioMuted");
       const $startVideoMuted = $("#startVideoMuted");
       const $disableFaceCentering = $("#disableFaceCentering");
@@ -95,7 +95,7 @@
           paramGroup['config.prejoinConfig.enabled'] = false;
         }
 
-        if ($audioOnly.prop('checked')) {
+        if ($startAudioOnly.prop('checked')) {
           paramGroup['config.startAudioOnly'] = true;
         }
 
@@ -128,7 +128,7 @@
       }
 
       $disablePrejoinPage.on("input", featureChanged);
-      $audioOnly.on("input", featureChanged);
+      $startAudioOnly.on("input", featureChanged);
       $startAudioMuted.on("input", featureChanged);
       $startVideoMuted.on("input", featureChanged);
       $disableFaceCentering.on("input", featureChanged);
@@ -340,10 +340,14 @@
           </div>
 
           <div class="form-check mb-4">
-            <input class="form-check-input" type="checkbox" value="" id="audioOnly">
-            <label class="form-check-label" for="audioOnly">
-              Audio-only meeting (does not send or receive video)
+            <input class="form-check-input" type="checkbox" value="" id="startAudioOnly">
+            <label class="form-check-label" for="startAudioOnly">
+              Audio only
             </label>
+            <br/>
+            <small class="text-muted">
+              Adjusts performance settings so no video is sent or received, allowing more bandwidth for audio call.
+            </small>
           </div>
 
           <div class="form-check mb-4">
